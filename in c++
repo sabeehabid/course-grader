@@ -1,0 +1,97 @@
+
+
+#include <iostream>
+#include <iomanip>
+#include <string>
+using namespace std;
+
+int main() {
+    // Declare variables
+    string fullName;
+    double testPercentage, quizPercentage, progPercentage, totalPercentage;
+    int exam1, exam2, exam3;
+    int quizScore, assignmentScore;
+    char letterGrade;
+    const double TEST_WEIGHT = 0.6, QUIZ_WEIGHT = 0.1, PROG_WEIGHT = 0.3;
+
+    // Prompt user for input
+    cout << "Please enter your full name, including middle initials if you have one: ";
+    getline(cin, fullName);
+
+    // Get test scores
+    cout << "Please enter three (3) positive whole numbers (0-100) as test scores:\n";
+    cin >> exam1;
+
+    // Validate test score 1
+    if (!cin || exam1 < 0 || exam1 > 100) {
+        cout << "\nTest score 1 is not valid. It must be a positive whole number between 0 and 100 inclusive.\n";
+        exit(0);
+    }
+
+    cin >> exam2;
+
+    // Validate test score 2
+    if (!cin || exam2 < 0 || exam2 > 100) {
+        cout << "\nTest score 2 is not valid. It must be a positive whole number between 0 and 100 inclusive.\n";
+        exit(0);
+    }
+
+    cin >> exam3;
+
+    // Validate test score 3
+    if (!cin || exam3 < 0 || exam3 > 100) {
+        cout << "\nTest score 3 is not valid. It must be a positive whole number between 0 and 100 inclusive.\n";
+        exit(0);
+    }
+
+    // Get quiz score
+    cout << "\nPlease enter one (1) whole positive number between 0 and 100 for a quiz score: ";
+    cin >> quizScore;
+
+    // Validate quiz score
+    if (!cin || quizScore < 0 || quizScore > 100) {
+        cout << "\nQuiz score is not valid. It must be a positive whole number between 0 and 100 inclusive.\n";
+        exit(0);
+    }
+
+    // Get programming assignment score
+    cout << "\nPlease enter one (1) real positive score between 0 and 100 for a programming assignment score: ";
+    cin >> assignmentScore;
+
+    // Validate programming assignment score
+    if (!cin || assignmentScore < 0 || assignmentScore > 100) {
+        cout << "\nProgramming assignment score is not valid. It must be a positive whole number between 0 and 100 inclusive.\n";
+        exit(0);
+    }
+
+    // Calculate percentages
+    progPercentage = assignmentScore * PROG_WEIGHT;
+    quizPercentage = quizScore * QUIZ_WEIGHT;
+    testPercentage = (exam1 + exam2 + exam3) / 3.0 * TEST_WEIGHT;
+    totalPercentage = testPercentage + quizPercentage + progPercentage;
+
+    // Determine letter grade
+    if (totalPercentage >= 90)
+        letterGrade = 'A';
+    else if (totalPercentage >= 80)
+        letterGrade = 'B';
+    else if (totalPercentage >= 70)
+        letterGrade = 'C';
+    else if (totalPercentage >= 60)
+        letterGrade = 'D';
+    else
+        letterGrade = 'F';
+
+    // Output the report
+    cout << fixed << setprecision(2);
+    cout << "\n\nHello " << fullName << ", here is your report:\n";
+    cout << "Test Scores:                        " << exam1 << ", " << exam2 << ", " << exam3 << endl;
+    cout << "Tests percentage:                   " << testPercentage << endl;
+    cout << "Quiz percentage:                    " << quizPercentage << endl;
+    cout << "Programming Assignment percentage:  " << progPercentage << endl;
+    cout << "Total Course Percentage:            " << totalPercentage << endl;
+    cout << "Letter grade for the course:        " << letterGrade << endl;
+
+    return 0;
+}
+
